@@ -1,0 +1,44 @@
+{
+    "name": "Hyper-Automation",
+    "description": "Extension will record user actions adn get whole DOM of active page in browser",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "icons":
+    {
+        "128": "icon128.png",
+        "64": "icon64.png",
+        "48": "icon48.png",
+        "32": "icon32.png",
+        "16": "icon16.png"
+    },
+    "permissions":
+    [
+        "tabs",
+        "<all_urls>"
+    ],
+    "content_scripts": 
+    [
+        {
+          "matches": ["<all_urls>"],
+          "css": [],
+          "js": ["content.js"]
+        }
+    ],
+    "background":
+    {
+        "persistsent": false,
+        "scripts":
+        [
+            "event.js"
+        ]
+    },
+    "browser_action": 
+    {
+        "default_icon": "icon16.png",
+        "default_popup": "popup.html"
+    },
+    "externally_connectable": 
+    {
+        "matches": ["http://localhost:4200/*"]
+    }
+}
