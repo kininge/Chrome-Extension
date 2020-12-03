@@ -29,7 +29,5 @@ export class AppComponent
   {
     this.responseGeted= true;
     this.message = response;
-    console.log(this.message);
-    this.message= "Hi there";
   }
 }
