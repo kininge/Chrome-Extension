@@ -1,0 +1,10 @@
+{
+    "name": "Hyper-Automation",
+    "version": "1.0.0",
+    "description": "Hyper automation is Infosys' step to make testing easy and less boring",
+    "manifest_version": 2,
+    "browser_action":
+    {
+        "default_popup": "index.html"
+    }
+}
