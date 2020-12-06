@@ -1,0 +1,106 @@
+
+<!-- test-suite-component -->
+<div id="test-suite-component">
+
+    <!-- test-suite-title -->
+    <div id="test-suite-title-container">
+
+        <h2 id="test-suite-title">{{ testSuiteTitle }}</h2>
+
+        <!-- test-suite-user-action-buttons -->
+        <div id="test-suite-user-action-buttons">
+
+            <button id="create-new-test-suite" class="icon-button tooltip" tooltip-data="Create new test suite">
+                <fa-icon [icon]="faPlus"></fa-icon>
+            </button>
+
+        </div>
+        <!-- test-suite-user-action-buttons -->
+
+    </div>
+    <!-- test-suite-title -->
+
+    <div class="title-spacer"></div>
+
+    <!-- test-suite-content -->
+    <div id="test-suite-content-container">
+
+        <!-- test-suite -->
+        <div id="test-suite-container" *ngFor="let testSuite of allTestSuites; let testSuiteIndex= index">
+
+            <!-- test-suite-name -->
+            <div id="test-suite-name-container" >
+
+                <!-- test-suite-logo-name-container -->
+                <div id="test-suite-logo-name-container">
+                    <fa-icon *ngIf="!testSuite.status" [icon]="faAngleRight"></fa-icon>
+                    <fa-icon *ngIf="testSuite.status" [icon]="faAngleDown"></fa-icon>
+                    &nbsp; &nbsp;
+                    <h3 id="test-suite-name" (click)="expandTestSuite(testSuiteIndex)">{{ testSuite.testSuiteName }}</h3>
+                </div>
+                <!-- test-suite-logo-name-container -->
+
+                <!-- test-suite-user-action-buttons -->
+                <div id="test-suite-action-buttons">
+                    
+                    <button id="rename-test-suite-name" class="icon-button tooltip" tooltip-data="Rename test suite">
+                        <fa-icon [icon]="faFont"></fa-icon>
+                    </button>
+
+                    <button id="play-test" class="icon-button tooltip" tooltip-data="Run test suite">
+                        <fa-icon [icon]="faPlay"></fa-icon>
+                    </button>
+
+                    <button id="create-new-test-case" class="icon-button tooltip" tooltip-data="Create new test case">
+                        <fa-icon [icon]="faPlus"></fa-icon>
+                    </button>
+        
+                </div>
+                <!-- test-suite-user-action-buttons -->
+
+            </div>
+            <!-- test-suite-name -->
+
+            <!-- check-test-suite-is-expanded -->
+            <div id="test-case-expansion-container" *ngIf="testSuite.status">
+
+                <!-- text-case-name-container -->
+                <div id="text-case-name-container" *ngFor="let testCase of testSuite.testSuiteData; let testCaseIndex= index">
+
+                    <!-- test-case-logo-name-container -->
+                    <div id="test-case-logo-name-container">
+                        <fa-icon [icon]="faFile"></fa-icon>
+                        &nbsp; &nbsp;
+                        <h4 id="test-case-name" (click)="showTestCase(testSuiteIndex, testCaseIndex)">{{ testCase.testCaseName }}</h4>
+                    </div>
+                    <!-- test-case-logo-name-container -->
+                    
+    
+                    <!-- test-case-user-action-buttons -->
+                    <div id="test-case-action-buttons">
+                        
+                        <button id="rename-test-case-name" class="icon-button tooltip" tooltip-data="Rename test case">
+                            <fa-icon [icon]="faFont"></fa-icon>
+                        </button>
+    
+                        <button id="create-new-test-case" class="icon-button tooltip" tooltip-data="Run test case">
+                            <fa-icon [icon]="faPlay"></fa-icon>
+                        </button>
+            
+                    </div>
+                    <!-- test-case-user-action-buttons -->
+
+                </div>
+                <!-- text-case-name-container -->
+
+            </div>
+            <!-- check-test-suite-is-expanded -->
+    
+        </div>
+        <!-- test-suite -->
+
+    </div>
+    <!-- test-suite-content -->
+
+</div>
+<!-- test-suite-component -->

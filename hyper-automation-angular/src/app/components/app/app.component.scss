@@ -1,0 +1,40 @@
+
+#hyper-automation-page
+{
+    display: grid;
+    grid-gap: 6px;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
+}
+
+#header-section
+{
+    grid-column-start: 1;
+    grid-column-end: 13;
+    height: 50px;
+    overflow: hidden;
+}
+
+#test-suite-section
+{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    height: 480px;
+    overflow: hidden;
+}
+
+#user-action-section
+{
+    grid-column-start: 4;
+    grid-column-end: 13;
+    height: 480px;
+    overflow: hidden;
+}
+
+#console-section
+{
+    grid-column-start: 1;
+    grid-column-end: 13;
+    height: 143px;
+    overflow: hidden;
+
+}

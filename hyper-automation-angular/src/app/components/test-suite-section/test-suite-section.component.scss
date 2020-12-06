@@ -1,0 +1,132 @@
+
+
+#test-suite-component
+{
+    border-radius: 4px;
+    background-color: #ffffff;
+    padding: 4px 16px;
+}
+
+#test-suite-title-container
+{
+    display: flex;
+    height: 36px;
+    align-items: center;
+    justify-content: space-between;
+
+    #test-suite-title
+    {
+        font-size: 16px;
+    }
+
+    #test-suite-user-action-buttons
+    {
+        margin-top: 10px;
+    }
+}
+
+#test-suite-content-container
+{
+    height: 422px;
+
+    #test-suite-name-container
+    {
+        height: 30px;
+        padding-left: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        #test-suite-logo-name-container
+        {
+            display: flex;
+            align-items: center;
+
+            fa-icon
+            {
+                font-size: 18px;
+                color: #adadad;
+            }
+
+            #test-suite-name
+            {
+                font-size: 14px;
+                cursor: pointer;
+                color: #adadad;
+            }
+        }
+
+        #test-suite-action-buttons
+        {
+            #rename-test-suite-name
+            {
+                fa-icon
+                {
+                    font-size: 13px;
+                    color: #bebebe;
+                    
+                    &:hover
+                    {
+                        color: #0E101A;
+                    }
+                }
+            }
+
+            #play-test
+            {
+                fa-icon 
+                {
+                    font-size: 12.5px;
+                    color: #bebebe;
+                    
+                    &:hover
+                    {
+                        color: #0E101A;
+                    }
+                }
+            }
+
+            #create-new-test-case
+            {
+                fa-icon 
+                {
+                    font-size: 13px;
+                    color: #bebebe;
+
+                    &:hover
+                    {
+                        color: #0E101A;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#test-case-expansion-container
+{
+    border-left: 1px solid #bebebe;
+    margin-left: 30px;
+    padding-left: 30px;
+
+    #text-case-name-container
+    {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 30px;
+
+        #test-case-logo-name-container
+        {
+            display: flex;
+            align-items: center;
+
+            #test-case-name
+            {
+                font-size: 14px;
+                cursor: pointer;
+                color: #adadad;
+            }
+        }
+    }
+}
