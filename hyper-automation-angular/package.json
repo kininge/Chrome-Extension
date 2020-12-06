@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.14",
     "@fortawesome/angular-fontawesome": "^0.5.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@types/chrome": "0.0.126",
     "rxjs": "~6.4.0",

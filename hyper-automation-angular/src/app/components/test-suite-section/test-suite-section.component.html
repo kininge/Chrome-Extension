@@ -10,7 +10,7 @@
         <!-- test-suite-user-action-buttons -->
         <div id="test-suite-user-action-buttons">
 
-            <button id="create-new-test-suite" class="icon-button tooltip" tooltip-data="Create new test suite">
+            <button id="create-new-test-suite" (click)="addNewTestSuite()" class="icon-button tooltip" tooltip-data="Create new test suite">
                 <fa-icon [icon]="faPlus"></fa-icon>
             </button>
 
@@ -62,7 +62,7 @@
             <!-- test-suite-name -->
 
             <!-- check-test-suite-is-expanded -->
-            <div id="test-case-expansion-container" *ngIf="testSuite.status">
+            <div id="test-case-expansion-container" *ngIf="testSuite.isExpanded">
 
                 <!-- text-case-name-container -->
                 <div id="text-case-name-container" *ngFor="let testCase of testSuite.testSuiteData; let testCaseIndex= index">
@@ -83,7 +83,7 @@
                             <fa-icon [icon]="faFont"></fa-icon>
                         </button>
     
-                        <button id="create-new-test-case" class="icon-button tooltip" tooltip-data="Run test case">
+                        <button id="play-test-case" class="icon-button tooltip" tooltip-data="Run test case">
                             <fa-icon [icon]="faPlay"></fa-icon>
                         </button>
             

@@ -2,7 +2,7 @@ import { TestCase } from './test-case';
 
 export interface TestSuite 
 {
-    status: boolean;
+    isExpanded: boolean;
     testSuiteName: string;
     testSuiteData: TestCase[];
 }

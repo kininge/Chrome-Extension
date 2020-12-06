@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './components/app/app.component';
 import { TestSuiteSectionComponent } from './components/test-suite-section/test-suite-section.component';
@@ -17,7 +18,7 @@ import { EventConsoleSectionComponent } from './components/event-console-section
   ],
   imports: 
   [
-    BrowserModule, FontAwesomeModule
+    BrowserModule, FontAwesomeModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

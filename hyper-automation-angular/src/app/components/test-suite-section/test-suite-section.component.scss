@@ -17,6 +17,11 @@
     #test-suite-title
     {
         font-size: 16px;
+
+        &:hover
+        {
+            color: #0E101A;
+        }
     }
 
     #test-suite-user-action-buttons
@@ -53,6 +58,11 @@
                 font-size: 14px;
                 cursor: pointer;
                 color: #adadad;
+
+                &:hover
+                {
+                    color: #0E101A;
+                }
             }
         }
 
@@ -121,11 +131,53 @@
             display: flex;
             align-items: center;
 
+            fa-icon
+            {
+                font-size: 14px;
+                color: #bebebe;
+            }
+
             #test-case-name
             {
                 font-size: 14px;
                 cursor: pointer;
                 color: #adadad;
+
+                &:hover
+                {
+                    color: #0E101A;
+                }
+            }
+        }
+
+        #test-case-action-buttons
+        {
+            #rename-test-case-name
+            {
+                fa-icon
+                {
+                    font-size: 13px;
+                    color: #bebebe;
+                    
+                    &:hover
+                    {
+                        color: #0E101A;
+                    }
+                }
+            }
+
+            #play-test-case
+            {
+                fa-icon 
+                {
+                    font-size: 12.5px;
+                    color: #bebebe;
+                    
+                    &:hover
+                    {
+                        color: #0E101A;
+                    }
+                }
             }
         }
     }

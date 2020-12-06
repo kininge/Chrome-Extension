@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlus, faAngleRight, faAngleDown, faFont, faPlay, faFile } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faAngleRight, faAngleDown, faFont, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faFile } from '@fortawesome/free-regular-svg-icons'
 import { TestSuite } from 'src/app/interfaces/test-suite';
 
 @Component
@@ -14,7 +15,7 @@ export class TestSuiteSectionComponent implements OnInit
   public allTestSuites: TestSuite[]=
   [
     {
-      status: false,
+      isExpanded: false,
       testSuiteName: "Untitled Test Suite",
       testSuiteData: 
       [
@@ -50,7 +51,7 @@ export class TestSuiteSectionComponent implements OnInit
       ]
     },
     {
-      status: false,
+      isExpanded: false,
       testSuiteName: "Untitled Test Suite",
       testSuiteData: 
       [
@@ -91,12 +92,17 @@ export class TestSuiteSectionComponent implements OnInit
 
   expandTestSuite(testSuiteIndex: number)
   {
-    this.allTestSuites[testSuiteIndex].status= this.allTestSuites[testSuiteIndex].status? false: true;
+    this.allTestSuites[testSuiteIndex].isExpanded= this.allTestSuites[testSuiteIndex].isExpanded? false: true;
   }
 
   showTestCase(testSuiteIndex: number, testCaseIndex: number)
   {
     console.log(this.allTestSuites[testSuiteIndex].testSuiteData[testCaseIndex]);
+  }
+
+  addNewTestSuite()
+  {
+
   }
 
 }
