@@ -106,7 +106,7 @@ body
     padding: 16px;
     border-radius: 5px;
     min-height: 30px;
-    width: 40%;
+    width: 30%;
   }
 
   .model-header
@@ -125,6 +125,7 @@ body
       font-size: 18px;
       margin-top: 2px;
       color: #bebebe;
+      cursor: pointer;
 
       &:hover
       {
@@ -144,7 +145,43 @@ body
   {
 
   }
+
+  .line
+  {
+    margin-top: 30px;
+  }
 }
+
+.nice-input
+{
+  padding: 5px 8px;
+  height: 20px;
+  border: 1px solid #0E101A;
+  border-radius: 4px;
+  color: #0E101A;
+
+  &:active
+  {
+    border: 1px solid rgba(21,195,154,.7);
+  }
+}
+
+.nice-input-2
+{
+  width: 100%;
+  padding: 1px 8px;
+  height: 20px;
+  border: 1px solid #0E101A;
+  border-radius: 4px;
+  color: #0E101A;
+
+  &:focus
+  {
+    border: 2px solid rgba(21,195,154,.7);
+  }
+}
+
+
 
 
 

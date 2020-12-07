@@ -33,8 +33,8 @@
 
                 <!-- test-suite-logo-name-container -->
                 <div id="test-suite-logo-name-container">
-                    <fa-icon *ngIf="!testSuite.status" [icon]="faAngleRight"></fa-icon>
-                    <fa-icon *ngIf="testSuite.status" [icon]="faAngleDown"></fa-icon>
+                    <fa-icon *ngIf="!testSuite.isExpanded" [icon]="faAngleRight"></fa-icon>
+                    <fa-icon *ngIf="testSuite.isExpanded" [icon]="faAngleDown"></fa-icon>
                     &nbsp; &nbsp;
                     <h3 id="test-suite-name" (click)="expandTestSuite(testSuiteIndex)">{{ testSuite.testSuiteName }}</h3>
                 </div>
@@ -43,7 +43,7 @@
                 <!-- test-suite-user-action-buttons -->
                 <div id="test-suite-action-buttons">
                     
-                    <button id="rename-test-suite-name" class="icon-button tooltip" tooltip-data="Rename test suite">
+                    <button id="rename-test-suite-name" class="icon-button tooltip" (click)="renameTestSuite(testSuiteIndex)" tooltip-data="Rename test suite">
                         <fa-icon [icon]="faFont"></fa-icon>
                     </button>
 
@@ -51,7 +51,7 @@
                         <fa-icon [icon]="faPlay"></fa-icon>
                     </button>
 
-                    <button id="create-new-test-case" class="icon-button tooltip" tooltip-data="Create new test case">
+                    <button id="create-new-test-case" class="icon-button tooltip" (click)="addNewTestCase(testSuiteIndex)" tooltip-data="Create new test case">
                         <fa-icon [icon]="faPlus"></fa-icon>
                     </button>
         
@@ -79,7 +79,7 @@
                     <!-- test-case-user-action-buttons -->
                     <div id="test-case-action-buttons">
                         
-                        <button id="rename-test-case-name" class="icon-button tooltip" tooltip-data="Rename test case">
+                        <button id="rename-test-case-name" (click)="renameTestCase(testSuiteIndex, testCaseIndex)" class="icon-button tooltip" tooltip-data="Rename test case">
                             <fa-icon [icon]="faFont"></fa-icon>
                         </button>
     
@@ -115,7 +115,7 @@
         <div class="model-header">
 
             <h2 class="model-title">{{ modelTitle }}</h2>
-            <fa-icon [icon]="faTimes" (click)="closeModal()"></fa-icon>
+            <fa-icon id [icon]="faTimes" class="model-close" (click)="closeModal()"></fa-icon>
 
         </div>
         <!-- model-header -->
@@ -125,7 +125,7 @@
 
             <div class="line">
 
-                <input type="text" class="nice-input" [(ngModel)]="rename" />
+                <input type="text" id="rename-or-create-name" class="nice-input" [(ngModel)]="rename" />
 
                 <button id="modal-save-button" class="condition-medium-button" [disabled]="renameStatus()" (click)="saveName()" >save</button>
 

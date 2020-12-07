@@ -2,5 +2,175 @@
 #user-action-component
 {
     background-color: #ffffff;
-    height: 100%;
+    padding: 4px 16px;
+    border-radius: 4px;
+}
+
+#user-action-title-container
+{
+    display: flex;
+    height: 36px;
+    align-items: center;
+    justify-content: space-between;
+
+    #user-action-title
+    {
+        font-size: 16px;
+
+        &:hover
+        {
+            color: #0E101A;
+        }
+    }
+}
+
+#user-action-content
+{
+    height: 422px;
+}
+
+#all-user-action-data
+{
+    height: 210px;
+    margin-bottom: 30px;
+    overflow: auto;
+    padding: 5px 10px;
+
+    &::-webkit-scrollbar
+    {
+        width: 0.5rem;
+    }
+    
+    &::-webkit-scrollbar-track
+    {
+        //background-color: #1E1E24; 
+    }
+    
+    &::-webkit-scrollbar-thumb
+    {
+        background-color: #15c39a; 
+        border-radius: 0.25rem;
+    }
+}
+
+#user-actions-header
+{
+    display: flex;
+    color: white;
+    align-items: center;
+    background-color: #15c39a;
+    height: 45px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+
+    .user-action-title
+    {
+        font-weight: 700;
+        font-size: small;
+        padding-left: 20px;
+    }
+
+    #user-action
+    {
+        width: 150px;
+    }
+
+    #targated-element
+    {
+        width: 450px;
+    }
+
+    #data
+    {
+        width: 200px;
+    }
+
+    #remove
+    {
+        width: 20px;
+    }
+}
+
+#user-action-data-conatainer
+{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin: 4px;
+    border-radius: 4px;
+    background-color: #bebebe;
+
+    #action
+    {
+        display: flex;
+        height: 30px;
+        align-items: center;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover
+        {
+            background-color: #15c39a;
+            color: #ffffff;
+        }
+    }
+
+    .user-action-data-data
+    {
+        font-size: small;
+        padding-left: 20px;
+    }
+
+    #user-action-data
+    {
+        width: 150px;
+    }
+
+    #targated-element-data
+    {
+        width: 450px;
+    }
+
+    #data-data
+    {
+        width: 200px;
+    }
+
+    #user-action-remove
+    {
+        width: 20px;
+        padding-left: 40px;
+        cursor: pointer;
+
+        &:hover
+        {
+            color: #cf000f;
+        }
+    }
+}
+
+#user-action-edit-container
+{
+    background-color: #15c39a;
+    padding: 10px 16px;
+    border-radius: 4px;
+
+    .edit-row
+    {
+        display: flex;
+        align-items: center;
+
+        .user-action-edit-title
+        {
+            font-size: larger;
+            font-weight: 700;
+            width: 180px;
+            height: 30px;
+        }
+
+        .user-action-edit-value
+        {
+            width: 100%;
+        }
+    }
 }
