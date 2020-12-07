@@ -9,6 +9,20 @@ body
   margin: 0;
 }
 
+.condition-medium-button
+{
+  font-size: 14px;
+  border: none;
+  outline: none;
+  padding: 4px 16px;
+  height: 32px;
+  color: #0E101A;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: #e6ebf1;
+  cursor: pointer;
+}
+
 .medium-button
 {
   font-size: 14px;
@@ -54,7 +68,7 @@ body
     position:absolute;
 
     display: none;
-    z-index: 99;
+    z-index: 1;
     min-width: 150px;
     padding: 5px 0px;
     border-radius: 4px;
@@ -68,6 +82,67 @@ body
   &:hover::before
   {
     display: block;
+  }
+}
+
+.modal 
+{
+  display: none;                            // ititially it will be hidden 
+  position: fixed;                          // position will be fixed from top of DOM
+  z-index: 2;                               // It will lies on 2nd layer on top than regular DOM
+  left: 0;      
+  top: 0;
+  width: 100%;                              // we using full width browser can provide
+  height: 100%;                             // we using full height browser can provide
+  overflow: auto;                           // if in case cotent overflow user can scroll
+  background-color: rgb(0,0,0);           // fallback color 
+  background-color: rgba(0,0,0,0.4);      // black w/ opacity 
+
+
+  .model-small-card
+  {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 16px;
+    border-radius: 5px;
+    min-height: 30px;
+    width: 40%;
+  }
+
+  .model-header
+  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .model-title
+    {
+      font-size: 16px;
+    }
+
+    .model-close
+    {
+      font-size: 18px;
+      margin-top: 2px;
+      color: #bebebe;
+
+      &:hover
+      {
+        color: #0E101A;
+      }
+    }
+  }
+
+  .model-body
+  {
+    margin-top: 5px;
+
+
+  }
+
+  .model-footer
+  {
+
   }
 }
 

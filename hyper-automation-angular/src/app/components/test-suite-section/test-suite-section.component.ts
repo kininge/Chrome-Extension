@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlus, faAngleRight, faAngleDown, faFont, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faAngleRight, faAngleDown, faFont, faPlay, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faFile } from '@fortawesome/free-regular-svg-icons'
 import { TestSuite } from 'src/app/interfaces/test-suite';
 
@@ -79,12 +79,17 @@ export class TestSuiteSectionComponent implements OnInit
     }
   ];
   public testSuiteTitle: string= 'Test Suites';
+  public modelTitle: string= undefined;
+  public rename: string= undefined;
+  public status: boolean = true;
+
   faPlus= faPlus;
   faAngleRight= faAngleRight;
   faAngleDown= faAngleDown;
   faFont= faFont;
   faPlay= faPlay;
   faFile= faFile;
+  faTimes= faTimes;
 
   constructor() { }
 
@@ -102,7 +107,46 @@ export class TestSuiteSectionComponent implements OnInit
 
   addNewTestSuite()
   {
+    this.modelTitle= "Create name for test suite"
+    let modal =document.getElementById("create-or-rename-test-suite-or-test-case");
+    modal.style.display= "block";
+  }
 
+  closeModal()
+  {
+    let modal =document.getElementById("create-or-rename-test-suite-or-test-case");
+    modal.style.display= "none";
+  }
+
+  saveName()
+  {
+    const testSuite: TestSuite= 
+    {
+      isExpanded: false,
+      testSuiteName: this.rename,
+      testSuiteData: []
+    }
+
+    this.allTestSuites.push(testSuite);
+    this.rename= undefined;
+    this.closeModal();
+  }
+
+  renameStatus()
+  {
+    let saveButton= document.getElementById("modal-save-button");
+
+    if(this.rename)
+    {
+      saveButton.style.backgroundColor= "#15c39a";
+      return false;
+      
+    }
+    else
+    {
+      saveButton.style.backgroundColor= "#6D758D";
+      return true;
+    }
   }
 
 }

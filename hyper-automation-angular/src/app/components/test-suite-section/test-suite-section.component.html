@@ -104,3 +104,37 @@
 
 </div>
 <!-- test-suite-component -->
+
+<!-- create-or-rename-test-suite-or-test-case -->
+<div id="create-or-rename-test-suite-or-test-case" class="modal">
+
+    <!-- model-card -->
+    <div class="model-small-card">
+        
+        <!-- model-header -->
+        <div class="model-header">
+
+            <h2 class="model-title">{{ modelTitle }}</h2>
+            <fa-icon [icon]="faTimes" (click)="closeModal()"></fa-icon>
+
+        </div>
+        <!-- model-header -->
+
+        <!-- model-body -->
+        <div class="model-body">
+
+            <div class="line">
+
+                <input type="text" class="nice-input" [(ngModel)]="rename" />
+
+                <button id="modal-save-button" class="condition-medium-button" [disabled]="renameStatus()" (click)="saveName()" >save</button>
+
+            </div>
+        </div>
+        <!-- model-body -->
+
+    </div>
+    <!-- model-card -->
+
+</div>
+<!-- create-or-rename-test-suite-or-test-case -->
