@@ -28,12 +28,30 @@
     #test-suite-user-action-buttons
     {
         margin-top: 10px;
+        margin-right: 10px;
     }
 }
 
 #test-suite-content-container
 {
     height: 422px;
+    overflow: auto;
+
+    &::-webkit-scrollbar
+    {
+        width: 0.5rem;
+    }
+    
+    &::-webkit-scrollbar-track
+    {
+        //background-color: #1E1E24; 
+    }
+    
+    &::-webkit-scrollbar-thumb
+    {
+        background-color: #15c39a; 
+        border-radius: 0.25rem;
+    }
 
     #test-suite-name-container
     {
@@ -69,6 +87,8 @@
 
         #test-suite-action-buttons
         {
+            margin-right: 10px;
+
             #rename-test-suite-name
             {
                 fa-icon

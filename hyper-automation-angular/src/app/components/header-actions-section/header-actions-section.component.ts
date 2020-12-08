@@ -16,9 +16,10 @@ export class HeaderActionsSectionComponent implements OnInit
 
   constructor() { }
 
-  ngOnInit() 
+  async ngOnInit() 
   {
-    
+    const status= await localStorage.getItem('recordOrStop');
+    this.recordOrStop= ((status== null) || (status== 'Record'))? 'Stop': 'Record';
   }
   
   async recordUserActions()
@@ -26,12 +27,19 @@ export class HeaderActionsSectionComponent implements OnInit
     if(this.recordOrStop.toLowerCase().trim()== "record")
     {
       this.recordOrStop= "Stop";
-      chrome.storage.sync.set({record: false});
+      await localStorage.setItem('recordOrStop', 'Record');
     }
     else
     {
       this.recordOrStop= "Record";
-      chrome.storage.sync.set({record: true});
+      await localStorage.setItem('recordOrStop', 'Stop');
     }
+
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) 
+    {
+      console.log('tabId: '+tabs[0].id);
+
+      chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"});
+    });
   }
 }

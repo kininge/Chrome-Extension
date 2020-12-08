@@ -3,15 +3,41 @@
     "version": "1.0.0",
     "description": "Hyper automation is Infosys' step to make testing easy and less boring",
     "manifest_version": 2,
-    "browser_action":
+    "icons":
     {
-        "default_title": "Hyper-Automation"
+        "128": "assets/icon128.png",
+        "64": "assets/icon64.png",
+        "48": "assets/icon48.png",
+        "32": "assets/icon32.png",
+        "16": "assets/icon16.png"
     },
-    "background": 
+    "permissions":
+    [
+        "tabs",
+        "<all_urls>",
+        "storage"
+    ],
+    "content_scripts": 
+    [
+        {
+          "matches": ["<all_urls>"],
+          "css": [],
+          "js": ["content-pages/content.js"]
+        }
+    ],
+    "background":
     {
-        "scripts": [ "background-pages/background.js" ],
-        "persistent": false
+        "persistsent": false,
+        "scripts":
+        [
+            "background-pages/background.js"
+        ]
     },
-    "permissions": [ "tabs", "storage" ]
+    "browser_action": 
+    {
+        "default_title": "Hyper-Automation",
+        "default_icon": "assets/icon16.png",
+        "default_popup": "index.html"
+    }
 
 }
