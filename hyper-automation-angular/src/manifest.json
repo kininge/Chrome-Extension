@@ -14,6 +14,7 @@
     "permissions":
     [
         "tabs",
+        "activeTab",
         "<all_urls>",
         "storage"
     ],
@@ -27,7 +28,7 @@
     ],
     "background":
     {
-        "persistsent": false,
+        "persistent": false,
         "scripts":
         [
             "background-pages/background.js"

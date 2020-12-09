@@ -13,72 +13,7 @@ import { TestCase } from 'src/app/interfaces/test-case';
 
 export class TestSuiteSectionComponent implements OnInit 
 {
-  public allTestSuites: TestSuite[]=
-  [
-    {
-      isExpanded: false,
-      testSuiteName: "Untitled Test Suite",
-      testSuiteData: 
-      [
-        {
-          testCaseName: "Untitled Test Case",
-          testCaseData: 
-          [
-            { stepId: 1, userActionType: "click", targetElement: "bla bla bla", value: null },
-            { stepId: 2, userActionType: "Hover", targetElement: "bla bla bla", value: null },
-            { stepId: 3, userActionType: "type", targetElement: "bla bla bla", value: "Somthing" },
-            { stepId: 4, userActionType: "click", targetElement: "bla bla bla", value: null },
-            { stepId: 5, userActionType: "Hover", targetElement: "bla bla bla", value: null }
-          ]
-        },
-        {
-          testCaseName: "Untitled Test Case",
-          testCaseData: 
-          [
-            { stepId: 1, userActionType: "click", targetElement: "bla bla bla", value: null },
-            { stepId: 2, userActionType: "click", targetElement: "bla bla bla", value: null },
-            { stepId: 3, userActionType: "Hover", targetElement: "bla bla bla", value: null }
-          ]
-        },
-        {
-          testCaseName: "Untitled Test Case",
-          testCaseData: 
-          [
-            { stepId: 1, userActionType: "click", targetElement: "bla bla bla", value: null },
-            { stepId: 2, userActionType: "Hover", targetElement: "bla bla bla", value: null },
-            { stepId: 3, userActionType: "type", targetElement: "bla bla bla", value: "Somthing" }
-          ]
-        }
-      ]
-    },
-    {
-      isExpanded: false,
-      testSuiteName: "Untitled Test Suite",
-      testSuiteData: 
-      [
-        {
-          testCaseName: "Untitled Test Case",
-          testCaseData: 
-          [
-            { stepId: 1, userActionType: "click", targetElement: "bla bla bla", value: null },
-            { stepId: 2, userActionType: "Hover", targetElement: "bla bla bla", value: null },
-            { stepId: 3, userActionType: "type", targetElement: "bla bla bla", value: "Somthing" },
-            { stepId: 4, userActionType: "click", targetElement: "bla bla bla", value: null },
-            { stepId: 5, userActionType: "Hover", targetElement: "bla bla bla", value: null }
-          ]
-        },
-        {
-          testCaseName: "Untitled Test Case",
-          testCaseData: 
-          [
-            { stepId: 1, userActionType: "click", targetElement: "bla bla bla", value: null },
-            { stepId: 2, userActionType: "click", targetElement: "bla bla bla", value: null },
-            { stepId: 3, userActionType: "Hover", targetElement: "bla bla bla", value: null }
-          ]
-        }
-      ]
-    }
-  ];
+  public allTestSuites: TestSuite[]= [];
   public testSuiteTitle: string= 'Test Suites';
   public modelTitle: string= undefined;
   public rename: string= undefined;

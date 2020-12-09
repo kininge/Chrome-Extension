@@ -1,7 +1,8 @@
 export interface UserAction 
 {
     stepId: number;
-    userActionType: string;
-    targetElement: string;
+    userAction: string;
+    label: string;
+    targetedElement: string;
     value: string;
 }

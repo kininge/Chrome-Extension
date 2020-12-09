@@ -2,108 +2,108 @@
 <!-- user-action-component -->
 <div id="user-action-component">
 
-        <!-- user-action-title -->
-        <div id="user-action-title-container">
+    <!-- user-action-title -->
+    <div id="user-action-title-container">
 
-            <h2 id="user-action-title">{{ userActionTitle }}</h2>
+        <h2 id="user-action-title">{{ userActionTitle }}</h2>
 
-        </div>
-        <!-- user-action-title -->
+    </div>
+    <!-- user-action-title -->
 
-        <div class="title-spacer"></div>
+    <div class="title-spacer"></div>
 
-        <!-- user-action-content -->
-        <div id="user-action-content">
+    <!-- user-action-content -->
+    <div id="user-action-content">
 
-            <!-- user-actions -->
-            <div id="user-actions-container">
+        <!-- user-actions -->
+        <div id="user-actions-container">
 
-                <!-- user-actions-header -->
-                <div id="user-actions-header">
+            <!-- user-actions-header -->
+            <div id="user-actions-header">
 
-                    <div id="user-action" class="user-action-title">
-                        User Action
-                    </div>
-
-                    <div id="targated-element" class="user-action-title">
-                        Target Element
-                    </div>
-
-                    <div id="data" class="user-action-title">
-                        Data
-                    </div>
-
-                    <div id="remove" class="user-action-title">
-                        Remove
-                    </div>
-
+                <div id="user-action" class="user-action-title">
+                    User Action
                 </div>
-                <!-- user-actions-header -->
 
-                <div id="all-user-action-data">
-                    <!-- user-actions -->
-                    <div id="user-action-data-conatainer" *ngFor="let action of userActions; let userActionIndex= index;">
-                        
-                        <div id="action" (click)="editUserAction(userActionIndex)" >
+                <div id="targated-element" class="user-action-title">
+                    Target Element
+                </div>
+
+                <div id="data" class="user-action-title">
+                    Data
+                </div>
+
+                <div id="remove" class="user-action-title">
+                    Remove
+                </div>
+
+            </div>
+            <!-- user-actions-header -->
+
+            <div id="all-user-action-data">
+                <!-- user-actions -->
+                <div id="user-action-data-conatainer" *ngFor="let action of userActionsData; let userActionIndex= index;">
                     
-                            <div id="user-action-data" class="user-action-data-data">
-                                {{ action.userActionType }}
-                            </div>
-                            
-                            <div id="targated-element-data" class="user-action-data-data">
-                                {{ action.targetElement }}
-                            </div>
-                            
-                            <div id="data-data" class="user-action-data-data">
-                                {{ action.value }}
-                            </div>
-                    
+                    <div id="action" (click)="editUserAction(userActionIndex)" >
+                
+                        <div id="user-action-data" class="user-action-data-data">
+                            {{ action.userAction }}
                         </div>
-                    
-                        <fa-icon id="user-action-remove" (click)="removeUserAction(userActionIndex)" class="user-action-data-data" [icon]="faTrash"></fa-icon>
-                    
+                        
+                        <div id="targated-element-data" class="user-action-data-data">
+                            {{ action.targetedElement }}
+                        </div>
+                        
+                        <div id="data-data" class="user-action-data-data">
+                            {{ action.value }}
+                        </div>
+                
                     </div>
-                    <!-- user-actions -->
+                
+                    <fa-icon id="user-action-remove" (click)="removeUserAction(userActionIndex)" class="user-action-data-data" [icon]="faTrash"></fa-icon>
+                
                 </div>
-
+                <!-- user-actions -->
             </div>
-            <!-- user-actions -->
-
-            <!-- user-actions-edit -->
-            <div id="user-action-edit-container">
-
-                <!-- user-action-edit -->
-                <div class="edit-row">
-
-                    <div class="user-action-edit-title">User Action</div>
-                    <input type="text" [(ngModel)]="userAction" class="nice-input-2">
-
-                </div>
-                <!-- user-action-edit -->
-
-                <!-- target-element-edit -->
-                <div class="edit-row">
-
-                    <div class="user-action-edit-title">Target Element</div>
-                    <input type="text" [(ngModel)]="targetElement" class="nice-input-2">
-
-                </div>
-                <!-- target-element-edit -->
-
-                <!-- value-edit -->
-                <div class="edit-row">
-
-                    <div class="user-action-edit-title">Value</div>
-                    <input type="text" [(ngModel)]="value" class="nice-input-2">
-
-                </div>
-                <!-- value-edit -->
-
-            </div>
-            <!-- user-actions-edit -->
 
         </div>
-        <!-- user-action-content -->
+        <!-- user-actions -->
+
+        <!-- user-actions-edit -->
+        <div id="user-action-edit-container">
+
+            <!-- user-action-edit -->
+            <div class="edit-row">
+
+                <div class="user-action-edit-title">User Action</div>
+                <input type="text" [(ngModel)]="userAction" class="nice-input-2">
+
+            </div>
+            <!-- user-action-edit -->
+
+            <!-- target-element-edit -->
+            <div class="edit-row">
+
+                <div class="user-action-edit-title">Target Element</div>
+                <input type="text" [(ngModel)]="targetElement" class="nice-input-2">
+
+            </div>
+            <!-- target-element-edit -->
+
+            <!-- value-edit -->
+            <div class="edit-row">
+
+                <div class="user-action-edit-title">Value</div>
+                <input type="text" [(ngModel)]="value" class="nice-input-2">
+
+            </div>
+            <!-- value-edit -->
+
+        </div>
+        <!-- user-actions-edit -->
+
+    </div>
+    <!-- user-action-content -->
 
 </div>
 <!-- user-action-component -->

@@ -5,4 +5,8 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse)
         var DOM= document.getElementsByTagName('html')[0].outerHTML;
         sendResponse({message: DOM});
     }
+
+    
 });
+
+console.log('From hyper automation');
