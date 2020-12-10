@@ -1,0 +1,47 @@
+
+body
+{
+    width: 700px;
+    background-color: #bebebe;
+    padding: 5px;
+}
+
+#header-section
+{
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 0px 10px;
+    border-radius: 4px;
+}
+
+#extesion-title-container
+{
+    display: flex;
+    align-items: center;
+}
+
+#extension-icon
+{
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+}
+
+#extension-title
+{
+    margin: 0px;
+    font-size: 18px;
+}
+
+#extension-actions-button
+{
+    
+}
+
+#recordOrStop
+{
+
+}

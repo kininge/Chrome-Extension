@@ -39,11 +39,11 @@ export class HeaderActionsSectionComponent implements OnInit
     }
     else
     {
+
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) 
       {
         chrome.tabs.sendMessage(tabs[0].id, {message: true}, function(response)
         {
-          console.log('response');
           console.log(response);
           this.userActions.emit(response.userActions);
         });
