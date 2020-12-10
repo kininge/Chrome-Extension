@@ -2,10 +2,13 @@
 window.isListning= false;
 window.userActionsLocal= [];
 
+
+
 /* Get request from popup side */
 chrome.runtime.onMessage.addListener( async function(request, sender, sendResponse) 
 {
     window.isListning= request.message;
+    console.log('window.isListning: '+window.isListning);
 
     if(!window.isListning)
     {
@@ -95,6 +98,7 @@ document.addEventListener('mousedown', function(element)
                 userAction.targetedElement= xpath;
 
                 window.userActionsLocal= [];
+                chrome.runtime.sendMessage({what: "userAction", data: initialAction});
                 window.userActionsLocal.push(initialAction); 
             }
             else
@@ -111,11 +115,13 @@ document.addEventListener('mousedown', function(element)
                     await getInsertedData();
 
                     userAction.stepId+= 1;
+                    chrome.runtime.sendMessage({what: "userAction", data: userAction});
                     window.userActionsLocal.push(userAction);
                     chrome.storage.local.set({data: window.userActionsLocal});
                 }
                 else
                 {
+                    chrome.runtime.sendMessage({what: "userAction", data: userAction});
                     window.userActionsLocal.push(userAction);
                     chrome.storage.local.set({data: window.userActionsLocal});
                 }
@@ -244,6 +250,7 @@ async function getInsertedData()
             value: element.value 
         };
 
+        chrome.runtime.sendMessage({what: "userAction", data: insertAction});
         window.userActionsLocal.push(insertAction);
         chrome.storage.local.set({data: window.userActionsLocal});
         chrome.storage.local.set({getData: false});

@@ -14,3 +14,16 @@ chrome.browserAction.onClicked.addListener(function(tab)
     }, 
     function(window){});
 });
+
+
+/* Take data from content.js and send to popup.js */
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) 
+{
+    if (request.what == "userAction") 
+    {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) 
+        {
+            //chrome.pageAction.show(tabs[0].id);
+        });
+    }
+});

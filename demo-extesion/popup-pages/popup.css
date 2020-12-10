@@ -106,15 +106,48 @@ body
 
 .item3
 {
-    width: 300px;
+    width: 200px;
 }
 
 .item4
 {
-    width: 100px;
+    width: 200px;
 }
 
-.item5
+#container-for-scroller
 {
-    width: 72px;
+    padding: 0px 4px;
+    margin: 5px 0px;
+    padding: 0px 4px;
+    margin: 5px 0px;
+    height: 200px;
+    overflow: auto;
+}
+
+.user-action
+{
+    background-color: #bebebe;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin: 3px 0px;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    color: black;
+}
+
+.user-action:hover
+{
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.action
+{
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px;
+    height: 11.5px;
+    overflow: hidden;
 }
