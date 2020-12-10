@@ -3,7 +3,6 @@ body
 {
     width: 700px;
     background-color: #bebebe;
-    padding: 5px;
 }
 
 #header-section
@@ -15,6 +14,7 @@ body
     background-color: #ffffff;
     padding: 0px 10px;
     border-radius: 4px;
+    margin-bottom: 10px;
 }
 
 #extesion-title-container
@@ -44,4 +44,77 @@ body
 #recordOrStop
 {
 
+}
+
+#user-actions-section
+{
+    background-color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#user-actions-title-container
+{
+
+}
+
+.section-title
+{
+    margin: 0px;
+    font-size: 16px;
+}
+
+.horizontal-spacer
+{
+    height: 2px;
+    background-color: #bebebe;
+    margin: 6px 0px 16px 0px;
+}
+
+#user-actions-container
+{
+
+}
+
+#user-action-header-container
+{
+    background-color: #3498db;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-radius: 4px 4px 2px 2px;
+}
+
+.header 
+{
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px;
+    color: #ffffff;
+}
+
+.item1
+{
+    width: 100px;
+}
+
+.item2
+{
+    width: 100px
+}
+
+.item3
+{
+    width: 300px;
+}
+
+.item4
+{
+    width: 100px;
+}
+
+.item5
+{
+    width: 72px;
 }
