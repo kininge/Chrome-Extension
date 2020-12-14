@@ -1,0 +1,58 @@
+
+#header-componnet
+{
+    display: flex;
+    padding: 4px 16px;
+    background-color: #ffffff;
+    justify-content: space-between;
+    border-radius: 4px;
+}
+
+#project-title
+{
+    display: flex;
+    align-items: center;
+
+    #project-logo
+    {
+        height: 32px;
+        width: 32px;
+        display: flex;
+        margin: 0px 5px 0px 0px;
+        background-color: #15c39a;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+
+        .logo
+        {
+            color: #ffffff;
+            font-size: 18px;
+        }
+    }
+}
+
+#project-name
+{
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .project-name
+    {
+        color: #0E101A;
+        font-size: 18px;
+    }
+}
+
+#project-interaction-buttons
+{
+    display: flex;
+    align-items: center;
+
+    #record-or-stop
+    {
+
+    }
+}

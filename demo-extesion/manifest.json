@@ -1,5 +1,5 @@
 {
-    "name": "Demo-Extesion",
+    "name": "Hyper Automation",
     "version": "1.0.0",
     "description": "Hyper automation is Infosys' step to make testing easy and less boring",
     "manifest_version": 2,
@@ -37,6 +37,10 @@
         "default_title": "Hyper-Automation",
         "default_icon": "icons/icon16.png",
         "default_popup": "popup-pages/popup.html"
+    },
+    "externally_connectable": 
+    {
+        "matches": ["http://localhost:4200/*"]
     }
 
 }

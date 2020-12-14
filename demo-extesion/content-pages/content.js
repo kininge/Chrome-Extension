@@ -2,7 +2,11 @@
 window.isListning= false;
 window.userActionsLocal= [];
 
-
+chrome.storage.local.get(['recordOrStop'], function(status)
+{
+    window.isListning= status.recordOrStop;
+    console.log('intial: '+window.isListning);
+});
 
 /* Get request from popup side */
 chrome.runtime.onMessage.addListener( async function(request, sender, sendResponse) 
@@ -23,9 +27,6 @@ chrome.runtime.onMessage.addListener( async function(request, sender, sendRespon
                     if(Feild.getData)
                     {
                         await getInsertedData();
-
-                        //var s= window.userActionsLocal.toString();
-                        //sendResponse({userActions: "Hi asdgv"});
                         console.log(window.userActionsLocal);
 
                         chrome.storage.local.set({data: []});
@@ -33,8 +34,6 @@ chrome.runtime.onMessage.addListener( async function(request, sender, sendRespon
                     }
                     else
                     {
-                        //var s= window.userActionsLocal.toString();
-                        //sendResponse({userActions: "Hi Pritam"});
                         console.log(window.userActionsLocal);
 
                         chrome.storage.local.set({data: []});
@@ -134,6 +133,8 @@ document.addEventListener('mousedown', function(element)
                 {
                     chrome.storage.local.set({getData: false});
                 }
+
+                console.log(window.userActionsLocal);
 
             });
         });

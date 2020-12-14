@@ -1,0 +1,40 @@
+
+<!-- header-componnet -->
+<div id="header-componnet">
+
+    <!-- project-title -->
+    <div id="project-title">
+
+        <!-- project-logo -->
+        <div id="project-logo">
+            <h1 class="logo">H</h1>
+        </div>
+        <!-- project-logo -->
+        
+        <!-- project-title -->
+        <div id="project-name">
+            <h1 class="project-name">{{ projectName }}</h1>
+        </div>
+        <!-- project-title -->
+
+    </div>
+    <!-- project-title -->
+
+    <!-- project-interaction-buttons -->
+    <div id="project-interaction-buttons">
+
+        <!-- record/stop-button -->
+        <button id="record-or-stop" class="medium-button" (click)="recordUserActions()">
+            <fa-icon *ngIf="recordOrStop== 'Record'" [icon]="faPlayCircle"></fa-icon>
+            <fa-icon *ngIf="recordOrStop== 'Stop'" [icon]="faStopCircle"></fa-icon>
+            &nbsp;
+            {{ recordOrStop }}
+        </button>
+        <!-- record/stop-button -->
+
+    </div>
+    <!-- project-interaction-buttons -->
+
+</div>
+<!-- header-componnet -->
+

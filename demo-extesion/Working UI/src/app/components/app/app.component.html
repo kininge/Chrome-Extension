@@ -1,0 +1,13 @@
+
+<!-- hyper-automation-page -->
+<div id="hyper-automation-page">
+
+  <!-- header test-sute user-action console -->
+  <app-header-actions-section id="header-section" (userActions)="getUserActions($event)"></app-header-actions-section>
+  <app-test-suite-section id="test-suite-section"></app-test-suite-section>
+  <app-user-actions-section id="user-action-section" [userActionsData]="userActions"></app-user-actions-section>
+  <app-event-console-section id="console-section"></app-event-console-section>
+  <!-- header test-sute user-action console -->
+
+</div>
+<!-- hyper-automation-page -->

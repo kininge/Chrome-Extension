@@ -124,6 +124,23 @@ body
     overflow: auto;
 }
 
+#container-for-scroller::-webkit-scrollbar
+{
+    width: 0.5rem;
+}
+
+#container-for-scroller::-webkit-scrollbar-track
+{
+    
+}
+
+#container-for-scroller::-webkit-scrollbar-thumb
+{
+    background-color: #3498db; 
+    border-radius: 0.25rem;
+}
+
+
 .user-action
 {
     background-color: #bebebe;
