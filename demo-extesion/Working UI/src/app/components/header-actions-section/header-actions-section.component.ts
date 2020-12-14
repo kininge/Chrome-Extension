@@ -34,17 +34,11 @@ export class HeaderActionsSectionComponent implements OnInit
   {
     if(this.recordOrStop.toLowerCase().trim()== "record")
     {
-      chrome.runtime.sendMessage(this.extensionId, {chromeExtension: false}, function(response) 
-      {
-        console.log(response);
-      });
+      chrome.runtime.sendMessage(this.extensionId, {chromeExtension: false}, this.emitTheData.bind(this));
     }
     else
     {
-      chrome.runtime.sendMessage(this.extensionId, {chromeExtension: true}, function(response) 
-      {
-        console.log(response);
-      });
+      chrome.runtime.sendMessage(this.extensionId, {chromeExtension: true}, this.emitTheData.bind(this));
     }
   }
   
@@ -63,5 +57,11 @@ export class HeaderActionsSectionComponent implements OnInit
     }
 
     this.notifyContentPage();
+  }
+
+  emitTheData(response)
+  {
+    console.log(response);
+    this.userActions.emit(response.data);
   }
 }

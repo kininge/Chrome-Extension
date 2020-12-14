@@ -10,10 +10,11 @@ export class AppComponent
 {
   public title = 'hyper-automation-angular';
   public userActions: UserAction[]= [];
+  public conponentReload: boolean= true;
 
   getUserActions(userActions: UserAction[])
   {
-    console.log('getUserActions');
     this.userActions= userActions;
+    console.log(this.userActions);
   }
 }

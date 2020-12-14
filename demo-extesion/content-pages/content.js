@@ -47,11 +47,11 @@ chrome.runtime.onMessage.addListener( async function(request, sender, sendRespon
 /* To listen mousedown or button click event */
 document.addEventListener('mousedown', function(element)
 {
-    console.log(element);
+    console.log('window.isListning: '+ window.isListning);
 
     if(window.isListning)
     {
-        chrome.storage.local.get(['data'], async function(userAction)
+        chrome.storage.local.get(['data'], async function(userActions)
         {
             var loggedURL= element.target.baseURI;
             var tagName= element.target.tagName.toLowerCase();

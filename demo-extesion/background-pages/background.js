@@ -24,27 +24,39 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
         chrome.browserAction.setBadgeText({'text': 'Start'});
         chrome.storage.local.set({recordOrStop: true});
 
+        chrome.storage.local.get(['recordOrStop'], function(status)
+        {
+            console.log('status: '+status.recordOrStop);
+        });
+
         /* Send listening request fro all non active tabs of same window */
         chrome.tabs.query({active: false, currentWindow: true}, function(tabs) 
         { 
             for(let index= 0; index< tabs.length; index++)
             {
+                console.log('tab Id: '+tabs[index].id);
                 chrome.tabs.sendMessage(tabs[index].id, {message: true});
             }
         });
 
-        sendResponse({chromeExtension: 'Extension is activated'});
+        sendResponse({chromeExtension: 'Extension is activated', data: []});
     }
     else if((request.chromeExtension== false) && (sender.origin== "http://localhost:4200"))
     {
         chrome.browserAction.setBadgeText({'text': 'Stop'});
         chrome.storage.local.set({recordOrStop: false});
 
+        chrome.storage.local.get(['recordOrStop'], function(status)
+        {
+            console.log('status: '+status.recordOrStop);
+        });
+
         /* Send listening request fro all non active tabs of same window */
         chrome.tabs.query({active: false, currentWindow: true}, function(tabs) 
         {
             for(let index= 0; index< tabs.length; index++)
             {
+                console.log('tab Id: '+tabs[index].id);
                 chrome.tabs.sendMessage(tabs[index].id, {message: false});
             }
         });
@@ -53,7 +65,7 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
         (
             function()
             {
-                chrome.storage.local.set(['data'], function(userActions)
+                chrome.storage.local.get(['data'], function(userActions)
                 {
                     console.log(userActions.data);
                     sendResponse({chromeExtension: 'Extension is deactivated', data: userActions.data});
