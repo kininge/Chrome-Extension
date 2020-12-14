@@ -22,19 +22,15 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
     if((request.chromeExtension== true) && (sender.origin== "http://localhost:4200"))
     {
         chrome.browserAction.setBadgeText({'text': 'Start'});
+        chrome.storage.local.set({recordOrStop: true});
 
         /* Send listening request fro all non active tabs of same window */
         chrome.tabs.query({active: false, currentWindow: true}, function(tabs) 
-        {
-            console.log('all tabs: ');
-            console.log(tabs);
-
-            chrome.storage.local.set({recordOrStop: true});
+        { 
             for(let index= 0; index< tabs.length; index++)
             {
                 chrome.tabs.sendMessage(tabs[index].id, {message: true});
             }
-            
         });
 
         sendResponse({chromeExtension: 'Extension is activated'});
@@ -42,23 +38,38 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
     else if((request.chromeExtension== false) && (sender.origin== "http://localhost:4200"))
     {
         chrome.browserAction.setBadgeText({'text': 'Stop'});
+        chrome.storage.local.set({recordOrStop: false});
 
         /* Send listening request fro all non active tabs of same window */
         chrome.tabs.query({active: false, currentWindow: true}, function(tabs) 
         {
-            console.log('all tabs: ');
-            console.log(tabs);
-
-            chrome.storage.local.set({recordOrStop: false});
             for(let index= 0; index< tabs.length; index++)
             {
-                chrome.tabs.sendMessage(tabs[index].id, {message: true});
+                chrome.tabs.sendMessage(tabs[index].id, {message: false});
             }
-            
         });
 
-        sendResponse({chromeExtension: 'Extension is deactivated'});
+        setTimeout
+        (
+            function()
+            {
+                chrome.storage.local.set(['data'], function(userActions)
+                {
+                    console.log(userActions.data);
+                    sendResponse({chromeExtension: 'Extension is deactivated', data: userActions.data});
+                    chrome.storage.local.set({data: []});
+                });
+            }, 
+            1000
+        );
+
+        
     }
+
+    
+
+    
+    
 });
 
 
@@ -67,9 +78,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
 {
     if (request.what == "userAction") 
     {
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) 
-        {
-            //chrome.pageAction.show(tabs[0].id);
-        });
+        console.log(request);
     }
 });

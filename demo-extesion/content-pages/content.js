@@ -29,14 +29,12 @@ chrome.runtime.onMessage.addListener( async function(request, sender, sendRespon
                         await getInsertedData();
                         console.log(window.userActionsLocal);
 
-                        chrome.storage.local.set({data: []});
                         window.userActionsLocal= [];
                     }
                     else
                     {
                         console.log(window.userActionsLocal);
 
-                        chrome.storage.local.set({data: []});
                         window.userActionsLocal= [];
                     }
                 }); 
@@ -49,9 +47,11 @@ chrome.runtime.onMessage.addListener( async function(request, sender, sendRespon
 /* To listen mousedown or button click event */
 document.addEventListener('mousedown', function(element)
 {
+    console.log(element);
+
     if(window.isListning)
     {
-        chrome.storage.local.get(['data'], async function(userActions) 
+        chrome.storage.local.get(['data'], async function(userAction)
         {
             var loggedURL= element.target.baseURI;
             var tagName= element.target.tagName.toLowerCase();
@@ -74,19 +74,19 @@ document.addEventListener('mousedown', function(element)
             
             if(label4)
             {
-                label= label4;
+                label= label4.toString().trim();
             }
             else if(label3)
             {
-                label= label3;
+                label= label3.toString().trim();
             }
             else if(label2)
             {
-                label= label2;
+                label= label2.toString().trim();
             }
             else if(label1)
             {
-                label= label1;
+                label= label1.toString().trim();
             }
 
             if((userActionsLocal== undefined) || (userActionsLocal.length== 0))
