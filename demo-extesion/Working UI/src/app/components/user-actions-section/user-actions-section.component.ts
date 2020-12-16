@@ -1,4 +1,4 @@
-import { Component, Output, OnInit, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
+import { Component, Output, OnInit, OnChanges, SimpleChanges, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { UserAction } from 'src/app/interfaces/user-action';
 import { faPlayCircle, faStopCircle } from '@fortawesome/free-solid-svg-icons';
@@ -8,10 +8,9 @@ import { faPlayCircle, faStopCircle } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './user-actions-section.component.html',
   styleUrls: ['./user-actions-section.component.scss']
 })
-export class UserActionsSectionComponent implements OnInit, OnChanges 
+export class UserActionsSectionComponent implements OnInit
 {
-  @Output() userAactionsEmit: EventEmitter<UserAction[]>= new EventEmitter<UserAction[]>();
-
+  @ViewChild('userActionParentView', {static: false}) userActionParent: ElementRef;
 
   public extensionId: string= 'pbcgpdcmgjgophdjifeahopggdfdkaba';
 
@@ -40,12 +39,6 @@ export class UserActionsSectionComponent implements OnInit, OnChanges
     this.notifyContentPage();
   }
 
-  ngOnChanges()
-  {
-    console.log('value chnaged');
-    console.log(this.userActionsData);
-  }
-
   /* notify to content page to listen or not */
   async notifyContentPage()
   {
@@ -55,6 +48,7 @@ export class UserActionsSectionComponent implements OnInit, OnChanges
     }
     else
     {
+      this.removeAllUserActions();
       chrome.runtime.sendMessage(this.extensionId, {chromeExtension: true}, this.emitTheData.bind(this));
     }
   }
@@ -92,14 +86,61 @@ export class UserActionsSectionComponent implements OnInit, OnChanges
   {
     console.log(response);
     this.userActionsData= response.data;
-    this.userAactionsEmit.emit(this.userActionsData);
+
+    for(let index= 0; index< this.userActionsData.length; index++)
+    {
+      this.inserUserAction(this.userActionsData[index]);
+    }
   }
 
-  try1()
+  inserUserAction(userAction: UserAction)
   {
-    console.log(this.userActionsData);
-    this.userActionsData= this.userActionsData;
+    console.log(this.userActionParent.nativeElement);
+
+    /* Create whole user actio row */
+    var userActionRow= document.createElement("DIV");
+    userActionRow.setAttribute("id", userAction.stepId.toString());
+    userActionRow.className= "user-action-data-conatainer";
+
+    /* create user action row */
+    var newUserAction = document.createElement("DIV");
+    newUserAction.className= "action";
+
+    var child1= document.createElement("DIV");
+    child1.className= "user-action-data-data user-action-data";
+    child1.innerHTML= userAction.userAction;
+
+    var child2= document.createElement("DIV");
+    child2.className= "user-action-data-data label-data";
+    child2.innerHTML= userAction.label;
+
+    var child3= document.createElement("DIV");
+    child3.className= "user-action-data-data value-data";
+    child3.innerHTML= userAction.value;
+
+    // var child4= document.createElement("FA-ICON");
+    // child4.className= "user-action-data-data user-action-remove";
+    // child4.setAttribute("\u005Bicon\u005D", "faTrash");
+    // child4.setAttribute("id", userAction.stepId.toString());
+    // child4.setAttribute("\u0028click\u0029", "removeUserAction($event)");
+
+    newUserAction.appendChild(child1);
+    newUserAction.appendChild(child2);
+    newUserAction.appendChild(child3);
+    // newUserAction.appendChild(child4);
+
+    userActionRow.appendChild(newUserAction);
+
+    console.log(newUserAction);
+
+    this.userActionParent.nativeElement.appendChild(userActionRow);
   }
 
-  
+  removeAllUserActions()
+  {
+    while (this.userActionParent.nativeElement.firstChild) 
+    {
+      this.userActionParent.nativeElement.removeChild(this.userActionParent.nativeElement.firstChild);
+    }
+  }
 }

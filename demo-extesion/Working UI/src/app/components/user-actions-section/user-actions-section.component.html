@@ -40,12 +40,12 @@
                     User Action
                 </div>
 
-                <div id="targated-element" class="user-action-title">
-                    Target Element
+                <div id="label" class="user-action-title">
+                    Label
                 </div>
 
-                <div id="data" class="user-action-title">
-                    Data
+                <div id="value" class="user-action-title">
+                    Value
                 </div>
 
                 <div id="remove" class="user-action-title">
@@ -55,9 +55,9 @@
             </div>
             <!-- user-actions-header -->
 
-            <div id="all-user-action-data">
+            <div id="all-user-action-data" #userActionParentView>
                 <!-- user-actions -->
-                <div id="user-action-data-conatainer" *ngFor="let action of userActionsData; let userActionIndex= index;">
+                <!-- <div class="user-action-data-conatainer" >
                     
                     <div id="action" (click)="editUserAction(userActionIndex)" >
                 
@@ -77,7 +77,7 @@
                 
                     <fa-icon id="user-action-remove" (click)="removeUserAction(userActionIndex)" class="user-action-data-data" [icon]="faTrash"></fa-icon>
                 
-                </div>
+                </div> -->
                 <!-- user-actions -->
             </div>
 
