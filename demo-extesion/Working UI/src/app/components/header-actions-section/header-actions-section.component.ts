@@ -10,58 +10,10 @@ import { UserAction } from 'src/app/interfaces/user-action';
 })
 export class HeaderActionsSectionComponent implements OnInit 
 {
-  @Output() userActions= new EventEmitter<UserAction[]>();
-
-  public extensionId: string= 'pbcgpdcmgjgophdjifeahopggdfdkaba';
-
   public projectName: string= "Hyper-Automation";
-  public recordOrStop: string= "Record";
-  faPlayCircle= faPlayCircle;
-  faStopCircle= faStopCircle;
 
   constructor() { }
 
-  async ngOnInit() 
-  {
-    const status= await localStorage.getItem('recordOrStop');
-    this.recordOrStop= ((status== null) || (status== 'Record'))? 'Stop': 'Record';
+  async ngOnInit() {}
 
-    this.notifyContentPage();
-  }
-
-  /* notify to content page to listen or not */
-  async notifyContentPage()
-  {
-    if(this.recordOrStop.toLowerCase().trim()== "record")
-    {
-      chrome.runtime.sendMessage(this.extensionId, {chromeExtension: false}, this.emitTheData.bind(this));
-    }
-    else
-    {
-      chrome.runtime.sendMessage(this.extensionId, {chromeExtension: true}, this.emitTheData.bind(this));
-    }
-  }
-  
-  /* chnage recordning status on user button click */
-  async recordUserActions()
-  {
-    if(this.recordOrStop.toLowerCase().trim()== "record")
-    {
-      this.recordOrStop= "Stop";
-      await localStorage.setItem('recordOrStop', 'Record');
-    }
-    else
-    {
-      this.recordOrStop= "Record";
-      await localStorage.setItem('recordOrStop', 'Stop');
-    }
-
-    this.notifyContentPage();
-  }
-
-  emitTheData(response)
-  {
-    console.log(response);
-    this.userActions.emit(response.data);
-  }
 }

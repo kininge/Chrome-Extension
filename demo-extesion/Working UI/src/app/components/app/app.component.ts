@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserAction } from 'src/app/interfaces/user-action';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +8,9 @@ import { UserAction } from 'src/app/interfaces/user-action';
 export class AppComponent 
 {
   public title = 'hyper-automation-angular';
-  public userActions: UserAction[]= [];
-  public conponentReload: boolean= true;
 
-  getUserActions(userActions: UserAction[])
+  userActionsRecive(userActions)
   {
-    this.userActions= userActions;
-    console.log(this.userActions);
+    console.log(userActions);
   }
 }

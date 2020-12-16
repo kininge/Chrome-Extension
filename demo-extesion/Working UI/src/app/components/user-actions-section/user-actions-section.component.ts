@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Output, OnInit, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { UserAction } from 'src/app/interfaces/user-action';
+import { faPlayCircle, faStopCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-actions-section',
@@ -9,8 +10,18 @@ import { UserAction } from 'src/app/interfaces/user-action';
 })
 export class UserActionsSectionComponent implements OnInit, OnChanges 
 {
-  @Input('userActionsData') userActionsData: UserAction[];
+  @Output() userAactionsEmit: EventEmitter<UserAction[]>= new EventEmitter<UserAction[]>();
 
+
+  public extensionId: string= 'pbcgpdcmgjgophdjifeahopggdfdkaba';
+
+  public projectName: string= "Hyper-Automation";
+  public recordOrStop: string= "Record";
+  faPlayCircle= faPlayCircle;
+  faStopCircle= faStopCircle;
+  faTrash= faTrash;
+
+  public userActionsData: UserAction[]= [];
   public userActionTitle: string= "User Actions";
   public tableLabels: string[] =["User Action", "Targeted Element", "Value", "Remove"];
 
@@ -18,20 +29,51 @@ export class UserActionsSectionComponent implements OnInit, OnChanges
   public targetElement: string= undefined;
   public value: string= undefined;
 
-  faTrash= faTrash;
-  
   constructor() { }
 
-  ngOnChanges(changes: SimpleChanges ) 
+  async ngOnInit() 
   {
-    console.log('Values change');
+    const status= await localStorage.getItem('recordOrStop');
+    console.log('status: '+status);
+    this.recordOrStop= ((status== null) || (status== 'Stop'))? 'Record': 'Stop';
+
+    this.notifyContentPage();
+  }
+
+  ngOnChanges()
+  {
+    console.log('value chnaged');
     console.log(this.userActionsData);
   }
 
-  ngOnInit() 
+  /* notify to content page to listen or not */
+  async notifyContentPage()
   {
-    console.log('Component reload user actions');
-    console.log(this.userActionsData);
+    if(this.recordOrStop.toLowerCase().trim()== "record")
+    {
+      chrome.runtime.sendMessage(this.extensionId.trim(), {chromeExtension: false}, this.emitTheData.bind(this));
+    }
+    else
+    {
+      chrome.runtime.sendMessage(this.extensionId, {chromeExtension: true}, this.emitTheData.bind(this));
+    }
+  }
+  
+  /* chnage recordning status on user button click */
+  async recordUserActions()
+  {
+    if(this.recordOrStop.toLowerCase().trim()== "record")
+    {
+      this.recordOrStop= "Stop";
+      await localStorage.setItem('recordOrStop', 'Record');
+    }
+    else
+    {
+      this.recordOrStop= "Record";
+      await localStorage.setItem('recordOrStop', 'Stop');
+    }
+
+    this.notifyContentPage();
   }
 
   editUserAction(userActionIndex: number)
@@ -46,4 +88,18 @@ export class UserActionsSectionComponent implements OnInit, OnChanges
     this.userActionsData.splice(userActionIndex, 1);
   }
 
+  emitTheData(response)
+  {
+    console.log(response);
+    this.userActionsData= response.data;
+    this.userAactionsEmit.emit(this.userActionsData);
+  }
+
+  try1()
+  {
+    console.log(this.userActionsData);
+    this.userActionsData= this.userActionsData;
+  }
+
+  
 }
