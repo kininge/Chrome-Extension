@@ -96,22 +96,12 @@ body
 
 .item1
 {
-    width: 100px;
+    width: 150px;
 }
 
 .item2
 {
-    width: 100px
-}
-
-.item3
-{
-    width: 200px;
-}
-
-.item4
-{
-    width: 200px;
+    width: 450px
 }
 
 #container-for-scroller

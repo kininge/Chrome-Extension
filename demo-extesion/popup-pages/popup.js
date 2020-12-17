@@ -1,5 +1,5 @@
 
-window.recordOrStopButton;
+window.recordOrStopButton;                                                  
 window.removePreviousData;
 window.userActionParent;
 window.userActionsList= [];
@@ -25,59 +25,12 @@ chrome.tabs.query({active: true, currentWindow: true}, function(allTabs)
 });
 */
 
-/* set initial state of record or stop button */
-chrome.storage.local.get(['recordOrStop'], function(status)
-{
-    window.recordOrStopButton= document.getElementById('recordOrStop');
 
-    var buttonStatus= status.recordOrStop;
-
-    if((buttonStatus== true) || (buttonStatus== null) || (buttonStatus== undefined))
-    {
-        window.recordOrStopButton.innerHTML= 'Stop';
-    }
-    else
-    {
-        window.recordOrStopButton.innerHTML= 'Record';
-    }
-});
 
 window.addEventListener('DOMContentLoaded', function()
 {
     window.recordOrStopButton= document.getElementById('recordOrStop');
     window.removePreviousData= document.getElementById('removeAll');
-
-    /* chnage status of record and stop button */
-    window.recordOrStopButton.addEventListener("click", function() 
-    {
-        var buttonStatus= window.recordOrStopButton.innerHTML;
-
-        chrome.storage.local.get(['recordOrStop'], function(status)
-        {  
-            var buttonStatus= status.recordOrStop;
-
-            if((buttonStatus== true) || (buttonStatus== null) || (buttonStatus== undefined))
-            {
-                chrome.storage.local.set({recordOrStop: false})
-                window.recordOrStopButton.innerHTML= 'Record';
-
-                chrome.tabs.query({active: true, currentWindow: true}, function(tabs) 
-                {
-                    chrome.tabs.sendMessage(tabs[0].id, {message: false});
-                });
-            }
-            else
-            {
-                chrome.storage.local.set({recordOrStop: true})
-                recordOrStopButton.innerHTML= 'Stop';
-
-                chrome.tabs.query({active: true, currentWindow: true}, function(tabs) 
-                {
-                    chrome.tabs.sendMessage(tabs[0].id, {message: true});
-                });
-            }
-        });
-    });
 
     /* Remove all previous data */
     window.removePreviousData.addEventListener('click', function()
@@ -93,6 +46,7 @@ window.addEventListener('DOMContentLoaded', function()
     })
 });
 
+/* Insert all user actions in DOM */
 function inserUserAction(userActionData)
 {
     window.userActionParent= document.getElementById("user-actions");
@@ -109,18 +63,18 @@ function inserUserAction(userActionData)
     child2.className= "action item2";
     child2.innerHTML= userActionData.label;
 
-    var child3= document.createElement("DIV");
-    child3.className= "action item3";
-    child3.innerHTML= userActionData.targetedElement;
+    // var child3= document.createElement("DIV");
+    // child3.className= "action item3";
+    // child3.innerHTML= userActionData.targetedElement;
 
-    var child4= document.createElement("DIV");
-    child4.className= "action item4";
-    child4.innerHTML= userActionData.value;
+    // var child4= document.createElement("DIV");
+    // child4.className= "action item4";
+    // child4.innerHTML= userActionData.value;
 
     newUserAction.appendChild(child1);
     newUserAction.appendChild(child2);
-    newUserAction.appendChild(child3);
-    newUserAction.appendChild(child4);
+    // newUserAction.appendChild(child3);
+    // newUserAction.appendChild(child4);
 
     window.userActionParent.appendChild(newUserAction);
 }
@@ -132,7 +86,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
 
     chrome.storage.local.get(['actionData'], function(User)
     {
+        console.log('User.actionData: ');
         window.userActionsList= User.actionData;
+        console.log(window.userActionsList);
 
         if((window.userActionsList== []) || (window.userActionsList== null) 
         || (window.userActionsList== undefined) || (window.userActionsList.length== 0))

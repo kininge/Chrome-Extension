@@ -1,7 +1,7 @@
 
 
 
-/* Open extension opup in new window and maximize the window 
+/* Open extension opup in new window and maximize the window */
 chrome.browserAction.onClicked.addListener(function(tab)    
 {
     console.log(tab);
@@ -10,24 +10,26 @@ chrome.browserAction.onClicked.addListener(function(tab)
     ({
         url: chrome.runtime.getURL("popup-pages/popup.html"), 
         type: "popup",
-        state:  "maximized"
+        width: 732,
+        height: 412
     }, 
     function(window){});
 });
-*/
 
 
 chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResponse) 
 {
+    console.log('External request');
+    
     if((request.chromeExtension== true) && (sender.origin== "http://localhost:4200"))
     {
         chrome.browserAction.setBadgeText({'text': 'Start'});
-        chrome.storage.local.set({recordOrStop: true});
+        // chrome.storage.local.set({recordOrStop: true});
 
-        chrome.storage.local.get(['recordOrStop'], function(status)
-        {
-            console.log('status: '+status.recordOrStop);
-        });
+        // chrome.storage.local.get(['recordOrStop'], function(status)
+        // {
+        //     console.log('status: '+status.recordOrStop);
+        // });
 
         /* Send listening request fro all non active tabs of same window */
         chrome.tabs.query({active: false, currentWindow: true}, function(tabs) 
@@ -39,17 +41,27 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
             }
         });
 
+        /* Open extension opup in new window and maximize the window */
+        chrome.windows.create                                                        
+        ({
+            url: chrome.runtime.getURL("popup-pages/popup.html"), 
+            type: "popup",
+            width: 732,
+            height: 412
+        }, 
+        function(window){});
+
         sendResponse({chromeExtension: 'Extension is activated', data: []});
     }
     else if((request.chromeExtension== false) && (sender.origin== "http://localhost:4200"))
     {
         chrome.browserAction.setBadgeText({'text': 'Stop'});
-        chrome.storage.local.set({recordOrStop: false});
+        // chrome.storage.local.set({recordOrStop: false});
 
-        chrome.storage.local.get(['recordOrStop'], function(status)
-        {
-            console.log('status: '+status.recordOrStop);
-        });
+        // chrome.storage.local.get(['recordOrStop'], function(status)
+        // {
+        //     console.log('status: '+status.recordOrStop);
+        // });
 
         /* Send listening request fro all non active tabs of same window */
         chrome.tabs.query({active: false, currentWindow: true}, function(tabs) 
@@ -69,10 +81,16 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
                 {
                     console.log(userActions.data);
                     sendResponse({chromeExtension: 'Extension is deactivated', data: userActions.data});
-                    chrome.storage.local.set({data: []});
+                    chrome.storage.local.set({'data': []});
+                });
+
+                chrome.storage.local.get(['data'], function(userActions)
+                {
+                    console.log('check is it empty');
+                    console.log(userActions.data);
                 });
             }, 
-            1000
+            200
         );
 
         
@@ -88,8 +106,14 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
 /* Take data from content.js and send to popup.js */
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) 
 {
+    console.log('from background.js')
+    console.log(request);
+
     if (request.what == "userAction") 
     {
-        console.log(request);
+        chrome.tabs.query({active: false, currentWindow: true}, function(tabs) 
+        {
+
+        });
     }
 });
