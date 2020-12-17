@@ -24,12 +24,12 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
     if((request.chromeExtension== true) && (sender.origin== "http://localhost:4200"))
     {
         chrome.browserAction.setBadgeText({'text': 'Start'});
-        // chrome.storage.local.set({recordOrStop: true});
+        chrome.storage.local.set({recordOrStop: true});
 
-        // chrome.storage.local.get(['recordOrStop'], function(status)
-        // {
-        //     console.log('status: '+status.recordOrStop);
-        // });
+        chrome.storage.local.get(['recordOrStop'], function(status)
+        {
+            console.log('status: '+status.recordOrStop);
+        });
 
         /* Send listening request fro all non active tabs of same window */
         chrome.tabs.query({active: false, currentWindow: true}, function(tabs) 
@@ -56,12 +56,12 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
     else if((request.chromeExtension== false) && (sender.origin== "http://localhost:4200"))
     {
         chrome.browserAction.setBadgeText({'text': 'Stop'});
-        // chrome.storage.local.set({recordOrStop: false});
+        chrome.storage.local.set({recordOrStop: false});
 
-        // chrome.storage.local.get(['recordOrStop'], function(status)
-        // {
-        //     console.log('status: '+status.recordOrStop);
-        // });
+        chrome.storage.local.get(['recordOrStop'], function(status)
+        {
+            console.log('status: '+status.recordOrStop);
+        });
 
         /* Send listening request fro all non active tabs of same window */
         chrome.tabs.query({active: false, currentWindow: true}, function(tabs) 
@@ -81,7 +81,7 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
                 {
                     console.log(userActions.data);
                     sendResponse({chromeExtension: 'Extension is deactivated', data: userActions.data});
-                    chrome.storage.local.set({'data': []});
+                    chrome.storage.local.set({data: []});
                 });
 
                 chrome.storage.local.get(['data'], function(userActions)
@@ -95,11 +95,7 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
 
         
     }
-
-    
-
-    
-    
+   
 });
 
 
