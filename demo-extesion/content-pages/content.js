@@ -48,17 +48,23 @@ document.addEventListener('mousedown', function(element)                        
 
     if(window.isListning== true)                                                                    //Record actionn only if listening status is true
     {
-        console.log('Recording this action');
+        console.log(element.target.attributes);
 
         chrome.storage.local.get(['data'], async function(userActions)                              //Get all user action data from chrome local storage
         {
             window.userActionsLocal= userActions.data;                                              //Assign all user action data to global variable
-            console.log('Before recording value');
-            console.log(userActions.data);
-            console.log(window.userActionsLocal);
 
             var loggedURL= element.target.baseURI;                                                  //Get web page URL
             var tagName= element.target.tagName.toLowerCase();                                      //Get tagname of user clicked element
+            var availableAttributes=element.target.attributes;
+            var allAttributes= {};
+            for(let index= 0; index< availableAttributes.length; index++)
+            {
+                var key= availableAttributes[index].nodeName;
+                var value= availableAttributes[index].nodeValue;
+                allAttributes[key]= value;
+            }
+
             var xpath= await createXpath(element.target);                                           //Get Xpath of clicked element
             var userAction = 
             { 
@@ -67,7 +73,8 @@ document.addEventListener('mousedown', function(element)                        
                 userAction: 'click', 
                 label: '', 
                 targetedElement: '', 
-                value: '' 
+                value: '',
+                attributes: allAttributes
             }
                            
             var label= '';                                                                          //User click element lable
@@ -102,7 +109,8 @@ document.addEventListener('mousedown', function(element)                        
                     userAction: 'open url', 
                     label: '', 
                     targetedElement: '', 
-                    value: loggedURL 
+                    value: loggedURL,
+                    attributes: {}
                 };
 
                 userAction.stepId= 2;                                                               //user actually clicked element's step id
@@ -168,23 +176,24 @@ function getLabelName(element, tagName)                                         
         }
 
     }
-    if(tagName== 'textarea')                                                                        //If element is textarea
+    else if(tagName== 'textarea')                                                                        //If element is textarea
     {
         return getLabelbyWay(1, element);
     }
-    else if((tagName== 'a') || (tagName== 'button'))                                                //If eleemnt is link or button
+    else if(tagName== 'img')
     {
         return getLabelbyWay(2, element);
     }
     else                                                                                            //All other elements
     {
-        return getLabelbyWay(2, element);
+        return getLabelbyWay(3, element);
     }
 }
 
 /* Get exact label data */
 function getLabelbyWay(way, element)
 {
+
     if(way== 1)                                                                                     //Way 1: To get label tag data
     {
         var siblings=  element.parentNode.childNodes;
@@ -201,7 +210,11 @@ function getLabelbyWay(way, element)
 
         return null;
     }
-    else                                                                                            //Way 2: To get whatever written inside the element
+    else if(way== 2)
+    {
+        return element.alt;
+    }
+    else if(way== 3)                                                                                       //Way 2: To get whatever written inside the element
     {
         return element.innerText;
     }
@@ -253,15 +266,6 @@ async function getInsertedData()
     else
     {
         element= getElementXpath(window.userActionsLocal[totalUserActions- 1].targetedElement);     //Search element because we neet new copy of element which have inserted dats. 
-
-        // var insertAction= 
-        // { 
-        //     stepId: lastAction.stepId+ 1, 
-        //     userAction: 'data insert', 
-        //     label: lastAction.label, 
-        //     targetedElement: lastAction.targetedElement, 
-        //     value: element.value                                                                    
-        // };
 
         window.userActionsLocal[totalUserActions- 1].value= element.value                           //Get inserted value
         lastAction= window.userActionsLocal[totalUserActions- 1];                                   //Get updated last user action present in list

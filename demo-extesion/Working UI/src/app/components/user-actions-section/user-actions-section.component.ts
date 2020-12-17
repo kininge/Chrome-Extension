@@ -1,7 +1,8 @@
-import { Component, Output, OnInit, OnChanges, SimpleChanges, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { Component, Output, OnInit, OnChanges, SimpleChanges, EventEmitter, ElementRef, ViewChild, Input } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { UserAction } from 'src/app/interfaces/user-action';
 import { faPlayCircle, faStopCircle } from '@fortawesome/free-solid-svg-icons';
+import { TestCaseAddress } from 'src/app/interfaces/test-case-address';
 
 @Component({
   selector: 'app-user-actions-section',
@@ -11,6 +12,8 @@ import { faPlayCircle, faStopCircle } from '@fortawesome/free-solid-svg-icons';
 export class UserActionsSectionComponent implements OnInit
 {
   @ViewChild('userActionParentView', {static: false}) userActionParent: ElementRef;
+  @Input() testCaseAddress: TestCaseAddress= undefined;
+  @Input() userActionsData: UserAction[]= [];
 
   public extensionId: string= 'pbcgpdcmgjgophdjifeahopggdfdkaba';
 
@@ -20,7 +23,7 @@ export class UserActionsSectionComponent implements OnInit
   faStopCircle= faStopCircle;
   faTrash= faTrash;
 
-  public userActionsData: UserAction[]= [];
+  
   public userActionTitle: string= "User Actions";
   public tableLabels: string[] =["User Action", "Targeted Element", "Value", "Remove"];
 

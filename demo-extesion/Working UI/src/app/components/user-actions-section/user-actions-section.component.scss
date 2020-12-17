@@ -31,8 +31,8 @@
 
 #all-user-action-data
 {
-    height: 210px;
-    margin-bottom: 30px;
+    height: 170px;
+    margin-bottom: 20px;
     overflow: auto;
     padding: 5px 8px;
 
@@ -82,7 +82,12 @@
 
     #value
     {
-        width: 320px;
+        width: 310px;
+    }
+
+    #remove
+    {
+        padding-right: 20px;
     }
 }
 
@@ -99,9 +104,9 @@
 
         .user-action-edit-title
         {
-            font-size: larger;
+            font-size: medium;
             font-weight: 700;
-            width: 180px;
+            width: 170px;
             height: 30px;
             color: #ffffff;
         }
@@ -112,3 +117,22 @@
         }
     }
 }
+
+#user-action-edit-title-container
+{
+    display: flex;
+    height: 30px;
+    justify-content: flex-end;
+
+    #user-action-buttons
+    {
+        display: flex;
+        align-items: center;
+
+        #save-or-create-new-test-case
+        {
+            margin-right: 10px;
+        }
+    }
+}
+

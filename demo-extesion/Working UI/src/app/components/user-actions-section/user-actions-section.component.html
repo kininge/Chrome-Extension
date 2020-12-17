@@ -56,29 +56,9 @@
             <!-- user-actions-header -->
 
             <div id="all-user-action-data" #userActionParentView>
-                <!-- user-actions -->
-                <!-- <div class="user-action-data-conatainer" >
-                    
-                    <div id="action" (click)="editUserAction(userActionIndex)" >
-                
-                        <div id="user-action-data" class="user-action-data-data">
-                            {{ action.userAction }}
-                        </div>
-                        
-                        <div id="targated-element-data" class="user-action-data-data">
-                            {{ action.targetedElement }}
-                        </div>
-                        
-                        <div id="data-data" class="user-action-data-data">
-                            {{ action.value }}
-                        </div>
-                
-                    </div>
-                
-                    <fa-icon id="user-action-remove" (click)="removeUserAction(userActionIndex)" class="user-action-data-data" [icon]="faTrash"></fa-icon>
-                
-                </div> -->
-                <!-- user-actions -->
+
+                <!-- here all user actions will come dinamically -->
+
             </div>
 
         </div>
@@ -86,6 +66,29 @@
 
         <!-- user-actions-edit -->
         <div id="user-action-edit-container">
+
+            <!-- user-action-edit-title -->
+            <div id="user-action-edit-title-container">
+
+                <!-- user-action-buttons -->
+                <div id="user-action-buttons">
+
+                    <!-- save-or-create-new-test-case -->
+                    <button *ngIf="!testCaseAddress" id="save-or-create-new-test-case" class="small-button-2">Create Test Case</button>
+                    <button *ngIf="testCaseAddress" id="save-or-create-new-test-case" class="small-button-2">Save Test Case</button>
+                    <!-- save-or-create-new-test-case -->
+
+                    <!-- edit-user-action -->
+                    <button id="edit-user-action" class="small-button-2">Edit</button>
+                    <!-- edit-user-action -->
+
+                </div>
+                <!-- user-action-buttons -->
+
+            </div>
+            <!-- user-action-edit-title -->
+
+            <div class="title-spacer-2"></div>
 
             <!-- user-action-edit -->
             <div class="edit-row">
