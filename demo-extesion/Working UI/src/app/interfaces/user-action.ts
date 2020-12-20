@@ -6,5 +6,5 @@ export interface UserAction
     label: string;
     targetedElement: string;
     value: string;
-    attributes: {}
+    attributes: {};
 }

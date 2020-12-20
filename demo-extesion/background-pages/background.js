@@ -2,24 +2,23 @@
 
 
 /* Open extension opup in new window and maximize the window */
-chrome.browserAction.onClicked.addListener(function(tab)    
-{
-    console.log(tab);
+// chrome.browserAction.onClicked.addListener(function(tab)    
+// {
+//     console.log(tab);
 
-    chrome.windows.create                                                        
-    ({
-        url: chrome.runtime.getURL("popup-pages/popup.html"), 
-        type: "popup",
-        width: 732,
-        height: 412
-    }, 
-    function(window){});
-});
+//     chrome.windows.create                                                        
+//     ({
+//         url: chrome.runtime.getURL("popup-pages/popup.html"), 
+//         type: "popup",
+//         width: 732,
+//         height: 412
+//     }, 
+//     function(window){});
+// });
 
 
 chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResponse) 
 {
-    console.log('External request');
     
     if((request.chromeExtension== true) && (sender.origin== "http://localhost:4200"))
     {
@@ -41,7 +40,10 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
             }
         });
 
-        /* Open extension opup in new window and maximize the window */
+        var views = chrome.extension.getViews();
+        console.log(views);
+
+        /* Open extension popup in new window and maximize the window */
         chrome.windows.create                                                        
         ({
             url: chrome.runtime.getURL("popup-pages/popup.html"), 
@@ -61,6 +63,15 @@ chrome.runtime.onMessageExternal.addListener( function(request, sender, sendResp
         chrome.storage.local.get(['recordOrStop'], function(status)
         {
             console.log('status: '+status.recordOrStop);
+        });
+
+        /* Get popup window and close it  */
+        chrome.tabs.query({active: true, currentWindow: false}, function(tabs) 
+        {
+            if(tabs[0].title== 'Hyper-Automation powered by Infosys')
+            {
+                chrome.tabs.remove(tabs[0].id);
+            } 
         });
 
         /* Send listening request fro all non active tabs of same window */

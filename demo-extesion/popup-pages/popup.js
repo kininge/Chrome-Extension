@@ -5,17 +5,17 @@ window.userActionParent;
 window.userActionsList= [];
 
 /* set previous user action data */
-chrome.storage.local.get(['actionData'], function(User)
-{
-    console.log('intiailly data show');
-    window.userActionsList= User.actionData;
-    console.log(window.userActionsList);
+// chrome.storage.local.get(['actionData'], function(User)
+// {
+//     console.log('intiailly data show');
+//     window.userActionsList= User.actionData;
+//     console.log(window.userActionsList);
 
-    for(let index= 0; index< window.userActionsList.length; index++)
-    {
-        inserUserAction(window.userActionsList[index]);
-    }
-});
+//     for(let index= 0; index< window.userActionsList.length; index++)
+//     {
+//         inserUserAction(window.userActionsList[index]);
+//     }
+// });
 
 /* reload the active tab's website 
 chrome.tabs.query({active: true, currentWindow: true}, function(allTabs)
@@ -81,6 +81,7 @@ function inserUserAction(userActionData)
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) 
 {
+    console.log(request);
     console.log(request.data);
     inserUserAction(request.data);
 
